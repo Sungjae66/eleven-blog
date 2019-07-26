@@ -2,15 +2,26 @@
     <div class="section">
         <!--头部-->
         <div class="head">
-            <ul>
-                <router-link
-                        :key="index" v-for="(navItem,index) in menu"
-                        :to="navItem.path" tag="li"
-                        :class=" activeRouteName == navItem.name ? 'actived' : '' "
-                        @click.native="changeActiveRouteName(navItem.name,index)">
-                    {{navItem.name}}
-                </router-link>
-            </ul>
+            <div class="headSection">
+                <div class="logo">
+                    <img src="../../assets/images/logo.png" alt="logo">
+                </div>
+                <ul>
+                    <router-link
+                            :key="index" v-for="(navItem,index) in menu"
+                            :to="navItem.path" tag="li"
+                            :class=" activeRouteName == navItem.name ? 'actived' : '' "
+                            @click.native="changeActiveRouteName(navItem.name,index)">
+                        {{navItem.name}}
+                    </router-link>
+                </ul>
+                <div class="searchBox">
+                     <div class="search">
+                         <input type="text" placeholder="search">
+                         <button>搜索</button>
+                     </div>
+                </div>
+            </div>
         </div>
         <!--主体内容-->
         <div class="content">
@@ -68,32 +79,60 @@
             position: fixed
             z-index: 999
             background: #222
-            ul
+            .headSection
+                width: 75%
                 margin: 0 auto
-                width: 80%
-                height: 55px
                 display: flex
-                color: #eee
-                li
-                    flex: 1
-                    line-height: 55px
-                    font-size: 16px
-                    cursor: pointer
-                    &:hover
-                        background-color: #804040
-                        opacity: 0.4
-                        color: #ffffff
-                        font-weight: bolder
+                justify-content: space-between
+                align-items: center
+                .logo
+                    width: 160px
+                ul
+                    width: 60%
+                    height: 55px
+                    display: flex
+                    color: #eee
+                    li
+                        flex: 1
+                        line-height: 55px
+                        font-size: 16px
+                        cursor: pointer
+                        &:hover
+                            background-color: #804040
+                            opacity: 0.4
+                            color: #ffffff
+                            font-weight: bolder
 
-                .actived
-                    color: #009393
-                    font-weight: bolder
+                    .actived
+                        color: #009393
+                        font-weight: bolder
+                .searchBox
+                    width: 250px
+                    .search
+                        display: flex
+                        justify-content: center
+                        input
+                            width: 200px
+                            height: 30px
+                            border: 1px solid #ddd
+                            border-top-left-radius: 3px
+                            border-bottom-left-radius: 3px
+                        button
+                            width: 60px
+                            height: 30px
+                            border: 1px solid #ddd
+                            border-top-right-radius: 3px
+                            border-bottom-right-radius: 3px
+                            background-color: #DEDBDB
+                            font-size: 14px
         .content
-            width: 80%
+            width: 75%
             min-height: 707px
-            padding: 75px 0 30px
-            margin: 0 auto
-            background-color: rgba(240,240,240,0.9)
+            padding: 75px 0 0
+            margin: 0 auto 20px
+            background-color: rgba(240,240,240,1)
+            border-bottom-left-radius: 6px
+            border-bottom-right-radius: 6px
         .foot
             width: 100%
             min-width: 1200px
@@ -103,7 +142,7 @@
             color: #b2bcc5
             font-size: 14px
             &> div
-                width: 80%
+                width: 75%
                 height: 100%
                 line-height: 50px
                 margin: 0 auto

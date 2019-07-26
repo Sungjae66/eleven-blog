@@ -47,10 +47,10 @@
                             <p>{{ item.content }}</p>
                         </div>
                         <div class="latestReleaseList-foot">
-                            <span class="publisher">{{ item.publisher }}</span>
-                            <span class="readNum">{{ item.readNum }}</span>
-                            <span class="comment">{{ item.comment }}</span>
-                            <span class="releaseTime">{{ item.releaseTime }}</span>
+                            <p><span class="publisher"></span><span>{{ item.publisher }}</span></p>
+                            <p><span class="readNum"></span><span>阅读:{{ item.readNum }}</span></p>
+                            <p><span class="comment"></span><span>评论:{{ item.comment }}</span></p>
+                            <p><span class="releaseTime"></span><span>{{ item.releaseTime }}</span></p>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,60 @@
         </div>
         <!--右侧-->
         <div class="right" >
-
+            <!--站点公告-->
+            <div class="announcement panel">
+                <div class="announcement-head">站点公告</div>
+                <div class="announcement-content">
+                    <a href="javascript:void(0);">
+                        <h1>快落の秃头女孩</h1>
+                        <p>个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。</p>
+                    </a>
+                </div>
+            </div>
+            <!--热门标签-->
+            <div class="hotLabel panel">
+                 <div class="hotLabel-head">
+                     <h3>热门标签</h3>
+                 </div>
+                <div class="hotLabel-content">
+                     <a v-for="(item,index) in labelList" href="javascript:void(0);">{{ item.tag }}</a>
+                </div>
+            </div>
+            <!--热文推荐-->
+            <div class="hotRecommended panel">
+                <div class="hotRecommended-head">
+                    <h3>最新发布</h3>
+                </div>
+                <div class="hotRecommended-content">
+                    <ul class="hotRecommendedList">
+                        <li v-for="(item,index) in hotRecommendedList">
+                            <a href="javascript:void(0);">{{ item.title }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--友情链接-->
+            <div class="link panel">
+                <div class="link-head">
+                    <h3>友情链接</h3>
+                </div>
+                <div class="link-content">
+                    <ul class="linkList">
+                        <li v-for="(item,index) in linkList">
+                            <a href="javascript:void(0);">{{ item.title }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--关注微信公众号-->
+            <div class="link panel">
+                <div class="link-head">
+                    <h3>友情链接</h3>
+                </div>
+                <div class="link-content">
+                    <img src="../../../assets/images/weixin.jpg" alt="小十一的微信号" title="关注微信么么哒">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -132,7 +185,7 @@
                         publisher: 'admin',
                         readNum: '210',
                         comment: '19',
-                        releaseTime: '2019-01-15',
+                        releaseTime: '2018-09-12',
                     },
                     {
                         title: 'Java 工具类--学习篇',
@@ -141,9 +194,43 @@
                         publisher: 'admin',
                         readNum: '621',
                         comment: '89',
-                        releaseTime: '2018-11-06',
+                        releaseTime: '2018-05-25',
                     },
-                ]
+                ],
+                labelList:[
+                    { tag: 'java' },
+                    { tag: 'tomcat负载均衡' },
+                    { tag: 'panel' },
+                    { tag: 'jQuery' },
+                    { tag: 'jQuery选择器' },
+                    { tag: 'linux' },
+                    { tag: 'Nginx' },
+                    { tag: 'linux文件类型' },
+                    { tag: 'chrome' },
+                    { tag: 'Redis' },
+                    { tag: 'spring' },
+                    { tag: 'tomcat' },
+                    { tag: 'SyntaxHighlighter' }
+                ],
+                hotRecommendedList: [
+                    { title: '排序算法之冒泡排序 － java实现' },
+                    { title: '快速搭建基于二进制日志文件的 mysql 复制' },
+                    { title: 'web 服务器负载均衡教程，快速搭建高可用服务器集群' },
+                    { title: '使用 redis 和 spring-session 实现 tomcat、glassfish 等 web 服务器集群 session 共享' },
+                    { title: '使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡' },
+                    { title: 'mysql 复制（replication）基础概念和应用场景简介' },
+                    { title: 'redis 单节点在 Linux 生产环境的安装和简单配置' },
+                    { title: '使用 jQuery 的 val() 方法来获取以及设置表单元素值' },
+                    { title: '使用 jQuery 的 removeProp() 方法来删除元素的特性（property）' },
+                    { title: '使用 jQuery 的 prop() 方法来获取以及设置元素的特性（property）' }
+                ],
+                linkList: [
+                    { title: '百度' },
+                    { title: '开源中国' },
+                    { title: '有乐网' },
+                    { title: '新浪网' },
+                    { title: '腾讯网' }
+                ],
             }
         },
         computed: {
@@ -159,8 +246,9 @@
         width: 100%
         height: auto
         display: flex
+        justify-content: space-between
         .left
-            width: 70%
+            width: 74%
             text-align: left
             .bannerBox
                 img
@@ -199,6 +287,8 @@
                             color: #999
             .latestRelease
                 border: 1px solid #ddd
+                padding-bottom: 20px
+                margin-bottom: 0px !important
                 .latestRelease-head
                     color: #333
                     background-color: rgba(211,211,211,0.5)
@@ -211,7 +301,6 @@
                         font-size: 16px
                 .latestRelease-content
                     padding: 20px 20px 0px
-                    //background-color: rgba(255,245,238,0.5)
                     &>div
                         border: 1px solid #ddd
                         box-shadow: 0px 8px 18px rgba(0,0,0,0.06)
@@ -227,6 +316,9 @@
                             margin-bottom: 10px
                             font-weight: 600
                             color: #333
+                            background-color: transparent
+                            &:hover
+                                color: #337ab7
                         .latestReleaseList-tag
                             margin: 0 0 10px
                             span
@@ -251,15 +343,120 @@
                                 overflow: hidden
                         .latestReleaseList-foot
                             margin: 0 0 10px
-                            span
+                            font-size: 12px !important
+                            p
+                                display: inline-block
                                 margin-right: 10px
-                                .publisher
+                                span
                                     display: inline-block
-                                    background: url("../../../assets/images/user.png")
+                                .publisher, .readNum, .comment, .releaseTime
+                                    width: 26px
+                                    height: 16px
+                                    background: url("../../../assets/images/user.png") no-repeat 6px 2px
+                                .readNum
+                                    background: url("../../../assets/images/readNum.png") no-repeat 6px 2px
+                                .comment
+                                    background: url("../../../assets/images/comment.png") no-repeat 6px 2px
+                                .releaseTime
+                                    background: url("../../../assets/images/releaseTime.png") no-repeat 6px 2px
         .right
-            width: 30%
-            background-color: rgba(255,228,225,0.5)
+            width: 23%
+            min-height: 1px
+            text-align: left
+            padding-right: 15px
+            &> div
+                width: 100%
+                height: auto
+                border: 1px solid #ddd
+            .announcement
+                position: relative
+                padding: 15px
+                &:hover
+                    border: 1px solid  #8EC55F
+                .announcement-head
+                    width: 86px
+                    background-color: #8EC55F
+                    margin: -20px 0 0 0
+                    padding: 4px 15px
+                    color: #fff
+                    font-size: 14px
+                    border-radius: 3px
+                .announcement-content
+                    &>a
+                        display: block
+                        text-decoration: none
+                        color: #333
+                        h1
+                            color: #8EC55F
+                            font-size: 20px
+                            margin-top: 14px
+                        p
+                            display: -webkit-box
+                            -webkit-box-orient: vertical
+                            -webkit-line-clamp: 6
+                            overflow: hidden
+                            color: #999
 
+            .hotLabel
+                width: 100%
+                .hotLabel-head
+                    padding: 0 15px
+                    color: #333
+                    background-color: rgba(211,211,211,0.5)
+                    border-bottom: 1px solid #ddd
+                    border-top-left-radius: 3px
+                    border-top-right-radius: 3px
+                    h3
+                        line-height: 38px
+                        font-size: 16px
+                .hotLabel-content
+                    padding: 20px 15px 10px 15px
+                    display: flex
+                    flex-wrap: wrap
+                    a
+                        display: inline-block
+                        margin-right: 10px
+                        margin-bottom: 10px
+                        background-color: #777
+                        padding: .2em .6em .3em
+                        font-size: 75%
+                        font-weight: 700
+                        color: #fff
+                        border-radius: .25em
+                        transition: background-color .5s
+                        &:hover
+                            background-color: #555
+            .hotRecommended,.link
+                border: 1px solid #ddd
+                padding-bottom: 20px
+                .hotRecommended-head,.link-head
+                    color: #333
+                    background-color: rgba(211,211,211,0.5)
+                    padding: 0px 20px
+                    border-bottom: 1px solid #ddd
+                    border-top-left-radius: 3px
+                    border-top-right-radius: 3px
+                    h3
+                        line-height: 38px
+                        font-size: 16px
+                .hotRecommended-content,.link-content
+                    padding: 20px 15px 10px
+                    .hotRecommendedList,.linkList
+                        li
+                            border-bottom: 1px solid #d8e6f8
+                            padding: 5px 0px
+                        a
+                            font-size: 14px
+                            color: #000
+                            background-color: transparent
+                            &:hover
+                                color: #337ab7
+            .link-content
+                .linkList
+                    li
+                        background: #F3F3F3
+                        border-radius: 50%
+                        text-align: center
         .panel
             margin-bottom: 20px
             background-color: #fff
