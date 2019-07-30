@@ -8,11 +8,9 @@
                 </div>
                 <ul>
                     <router-link
-                            :key="index" v-for="(navItem,index) in menu"
-                            :to="navItem.path" tag="li"
-                            :class=" activeRouteName == navItem.name ? 'actived' : '' "
-                            @click.native="changeActiveRouteName(navItem.name,index)">
-                        {{navItem.name}}
+                        :key="index" v-for="(navItem,index) in menu"
+                        :to="navItem.path" tag="li"
+                       >{{navItem.name}}
                     </router-link>
                 </ul>
                 <div class="searchBox">
@@ -44,24 +42,17 @@
             return {
                 menu:[
                     { name: '首页', path: '/indexpage'},
-                    { name: '技术文章', path: '/technicalarticles'},
-                    { name: '生活日记', path: '/lifediary'},
+                    { name: '文章', path: '/technicalarticles'},
+                    { name: '留言', path: '/message'},
                     { name: '关于', path: '/about'},
                 ],
-                activeRouteName: '首页',
             }
         },
         mounted(){
-            $(function(){
-                var ActiveRouteIndex = sessionStorage.getItem("ActiveRouteIndex");
-                $(".head ul li").eq(ActiveRouteIndex).addClass("actived").siblings().removeClass("actived");
-            })
+            
         },
         methods:{
-            changeActiveRouteName(name,idx){
-                this.activeRouteName = name;
-                sessionStorage.setItem('ActiveRouteIndex',idx);
-            }
+
         }
     }
 </script>
@@ -130,7 +121,7 @@
             min-height: 707px
             padding: 75px 0 0
             margin: 0 auto 20px
-            background-color: rgba(240,240,240,1)
+            background-color: rgba(255,255,255,0.9)
             border-bottom-left-radius: 6px
             border-bottom-right-radius: 6px
         .foot

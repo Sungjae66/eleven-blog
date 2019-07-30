@@ -1,31 +1,21 @@
 <template>
-    <div class="pageWrapper">
+    <div class="article">
         <!--头部-->
         <div class="article-head">
             <ol class="article-head-left">
                 <li><a @click="toIndex">首页</a></li>
                 <li class="active">留言</li>
             </ol>
-            <div class="article-head-right">像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</div>
+            <div class="article-head-right">你，生命中最重要的过客，之所以是过客，因为你未曾为我停留。</div>
         </div>
         <!--中间内容-->
         <div class="article-content">
             <!--左侧-->
             <div class="left" >
-                <!--置顶-->
-                <div class="stick panel">
-                    <div class="stick-title">博主置顶</div>
-                    <div class="stick-content">
-                        <a href="javascript:void(0);">
-                            <h1>快落の秃头女孩</h1>
-                            <p>个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。</p>
-                        </a>
-                    </div>
-                </div>
-                <!--最新发布-->
+                <!--最新留言-->
                 <div class="latestRelease panel">
                     <div class="latestRelease-head">
-                        <h3>最新发布</h3>
+                        <h3>最新留言</h3>
                     </div>
                     <div class="latestRelease-content">
                         <div v-for="(item,index) in latestReleaseList" class="latestReleaseList panel">
@@ -44,18 +34,25 @@
                             </div>
                         </div>
                     </div>
+                    <!--底部分页-->
+                    <div class="latestRelease-foot">
+                        <page></page>
+                    </div>
                 </div>
             </div>
             <!--右侧-->
             <div class="right" >
-                <!--站点公告-->
-                <div class="announcement panel">
-                    <div class="announcement-head">站点公告</div>
-                    <div class="announcement-content">
-                        <a href="javascript:void(0);">
-                            <h1>快落の秃头女孩</h1>
-                            <p>个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。</p>
-                        </a>
+                <!--热文推荐-->
+                <div class="hotRecommended panel">
+                    <div class="hotRecommended-head">
+                        <h3>热文推荐</h3>
+                    </div>
+                    <div class="hotRecommended-content">
+                        <ul class="hotRecommendedList">
+                            <li v-for="(item,index) in hotRecommendedList">
+                                <a href="javascript:void(0);">{{ item.title }}</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <!--友情链接-->
@@ -71,24 +68,19 @@
                         </ul>
                     </div>
                 </div>
-                <!--关注微信公众号-->
-                <div class="link panel">
-                    <div class="link-head">
-                        <h3>友情链接</h3>
-                    </div>
-                    <div class="link-content">
-                        <img src="../../../assets/images/weixin.jpg" alt="小十一的微信号" title="关注微信么么哒">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import { swiper, swiperSlide } from 'vue-awesome-swiper';
+    import { store } from '../../../store/store'
+    import page from '../../page'
     export default {
-        name: "about",
+        name: "message",
+        components:{
+            page,
+        },
         data(){
             return{
                 latestReleaseList:[
@@ -147,6 +139,18 @@
                         releaseTime: '2018-05-25',
                     },
                 ],
+                hotRecommendedList: [
+                    { title: '排序算法之冒泡排序 － java实现' },
+                    { title: '快速搭建基于二进制日志文件的 mysql 复制' },
+                    { title: 'web 服务器负载均衡教程，快速搭建高可用服务器集群' },
+                    { title: '使用 redis 和 spring-session 实现 tomcat、glassfish 等 web 服务器集群 session 共享' },
+                    { title: '使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡' },
+                    { title: 'mysql 复制（replication）基础概念和应用场景简介' },
+                    { title: 'redis 单节点在 Linux 生产环境的安装和简单配置' },
+                    { title: '使用 jQuery 的 val() 方法来获取以及设置表单元素值' },
+                    { title: '使用 jQuery 的 removeProp() 方法来删除元素的特性（property）' },
+                    { title: '使用 jQuery 的 prop() 方法来获取以及设置元素的特性（property）' }
+                ],
                 linkList: [
                     { title: '百度' },
                     { title: '开源中国' },
@@ -166,7 +170,7 @@
 </script>
 
 <style scoped lang="sass">
-    .pageWrapper
+    .article
         width: 100%
         .article-head
             display: flex
@@ -208,44 +212,8 @@
             .left
                 width: 74%
                 text-align: left
-                .bannerBox
-                    img
-                        width: 100%
-                        height: 350px
-
-                .stick
-                    width: 100%
-                    border: 1px solid #ddd
-                    position: relative
-                    &:hover
-                        border: 1px solid  #FF5E52
-                    .stick-title
-                        width: 86px
-                        background-color: #FF5E52
-                        margin: -5px 0 0 20px
-                        padding: 4px 15px
-                        color: #fff
-                        font-size: 14px
-                        border-radius: 3px
-                    .stick-content
-                        &>a
-                            display: block
-                            padding: 0px 15px 15px 20px
-                            text-decoration: none
-                            color: #333
-                            h1
-                                color: #FF5E52
-                                font-size: 20px
-                                margin-top: 14px
-                            p
-                                display: -webkit-box
-                                -webkit-box-orient: vertical
-                                -webkit-line-clamp: 2
-                                overflow: hidden
-                                color: #999
                 .latestRelease
                     border: 1px solid #ddd
-                    padding-bottom: 20px
                     margin-bottom: 0px !important
                     .latestRelease-head
                         color: #333
@@ -317,6 +285,7 @@
                                         background: url("../../../assets/images/comment.png") no-repeat 6px 2px
                                     .releaseTime
                                         background: url("../../../assets/images/releaseTime.png") no-repeat 6px 2px
+                    .latestRelease-foot
             .right
                 width: 23%
                 min-height: 1px
@@ -326,64 +295,6 @@
                     width: 100%
                     height: auto
                     border: 1px solid #ddd
-                .announcement
-                    position: relative
-                    padding: 15px
-                    &:hover
-                        border: 1px solid  #8EC55F
-                    .announcement-head
-                        width: 86px
-                        background-color: #8EC55F
-                        margin: -20px 0 0 0
-                        padding: 4px 15px
-                        color: #fff
-                        font-size: 14px
-                        border-radius: 3px
-                    .announcement-content
-                        &>a
-                            display: block
-                            text-decoration: none
-                            color: #333
-                            h1
-                                color: #8EC55F
-                                font-size: 20px
-                                margin-top: 14px
-                            p
-                                display: -webkit-box
-                                -webkit-box-orient: vertical
-                                -webkit-line-clamp: 6
-                                overflow: hidden
-                                color: #999
-
-                .hotLabel
-                    width: 100%
-                    .hotLabel-head
-                        padding: 0 15px
-                        color: #333
-                        background-color: rgba(211,211,211,0.5)
-                        border-bottom: 1px solid #ddd
-                        border-top-left-radius: 3px
-                        border-top-right-radius: 3px
-                        h3
-                            line-height: 38px
-                            font-size: 16px
-                    .hotLabel-content
-                        padding: 20px 15px 10px 15px
-                        display: flex
-                        flex-wrap: wrap
-                        a
-                            display: inline-block
-                            margin-right: 10px
-                            margin-bottom: 10px
-                            background-color: #777
-                            padding: .2em .6em .3em
-                            font-size: 75%
-                            font-weight: 700
-                            color: #fff
-                            border-radius: .25em
-                            transition: background-color .5s
-                            &:hover
-                                background-color: #555
                 .hotRecommended,.link
                     border: 1px solid #ddd
                     padding-bottom: 20px
@@ -415,10 +326,10 @@
                             background: #F3F3F3
                             border-radius: 50%
                             text-align: center
-        .panel
-            margin-bottom: 20px
-            background-color: #fff
-            border-radius: 4px
-            -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05)
-            box-shadow: 0 1px 1px rgba(0,0,0,.05)
+            .panel
+                margin-bottom: 20px
+                background-color: #fff
+                border-radius: 4px
+                -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05)
+                box-shadow: 0 1px 1px rgba(0,0,0,.05)
 </style>

@@ -50,7 +50,7 @@
                             <p><span class="publisher"></span><span>{{ item.publisher }}</span></p>
                             <p><span class="readNum"></span><span>阅读:{{ item.readNum }}</span></p>
                             <p><span class="comment"></span><span>评论:{{ item.comment }}</span></p>
-                            <p><span class="releaseTime"></span><span>{{ item.releaseTime }}</span></p>
+                            <p><span class="releaseTime"></span><span>{{ item.publishTime }}</span></p>
                         </div>
                     </div>
                 </div>
@@ -74,13 +74,13 @@
                      <h3>热门标签</h3>
                  </div>
                 <div class="hotLabel-content">
-                     <a v-for="(item,index) in labelList" href="javascript:void(0);">{{ item.tag }}</a>
+                     <a v-for="(item,index) in labelList" href="javascript:void(0);">{{ item.label }}</a>
                 </div>
             </div>
             <!--热文推荐-->
             <div class="hotRecommended panel">
                 <div class="hotRecommended-head">
-                    <h3>最新发布</h3>
+                    <h3>热文推荐</h3>
                 </div>
                 <div class="hotRecommended-content">
                     <ul class="hotRecommendedList">
@@ -117,6 +117,8 @@
 </template>
 
 <script>
+    import $ from 'jquery';
+    import {ajaxUtil} from "../../../common/AjaxUtil";
     import { swiper, swiperSlide } from 'vue-awesome-swiper';
     export default {
         name: "indexpage",
@@ -141,89 +143,9 @@
                         prevEl: '.swiper-button-prev',
                     },
                 },
-                latestReleaseList:[
-                    {
-                        title: 'wfyvv.com',
-                        tag: 'UUID,java',
-                        content: '个人网站正在建设中。。。',
-                        publisher: 'admin',
-                        readNum: '666',
-                        comment: '28',
-                        releaseTime: '2019-05-13',
-                    },
-                    {
-                        title: '使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡',
-                        tag: 'Nginx,tomcat负载均衡',
-                        content: '1.web服务器负载均衡简介web服务器负载均衡是指将多台可用单节点服务器组合成web服务器集群，然后通过负载均衡器将客户端请求均匀的转发到不同的单节点web服务器上，从而增加整个web服务器集群的吞吐量。',
-                        publisher: 'admin',
-                        readNum: '1003',
-                        comment: '2',
-                        releaseTime: '2019-03-16',
-                    },
-                    {
-                        title: '32位的UUID生成方法总结',
-                        tag: 'UUID,java',
-                        content: '在学习过程中，我们常常会用到ID，那么有哪些常用的 ID 生成方式，你知道吗？通过 java.util.UUID（终态类）生成',
-                        publisher: 'admin',
-                        readNum: '210',
-                        comment: '19',
-                        releaseTime: '2019-01-15',
-                    },
-                    {
-                        title: 'Java 工具类--学习篇',
-                        tag: 'java',
-                        content: '链接一：http://www.open-open.com/lib/view/open1403600391905.html链接二：http://www.360doc.com/content/13/0520/11/1722212_286734557.shtml链接三：https://my.oschina.net/u/1453975/blog/529521链接四：http://blog.csdn.net/u/1453975/blog/529521',
-                        publisher: 'admin',
-                        readNum: '621',
-                        comment: '89',
-                        releaseTime: '2018-11-06',
-                    },
-                    {
-                        title: '32位的UUID生成方法总结',
-                        tag: 'UUID,java',
-                        content: '在学习过程中，我们常常会用到ID，那么有哪些常用的 ID 生成方式，你知道吗？通过 java.util.UUID（终态类）生成',
-                        publisher: 'admin',
-                        readNum: '210',
-                        comment: '19',
-                        releaseTime: '2018-09-12',
-                    },
-                    {
-                        title: 'Java 工具类--学习篇',
-                        tag: 'java',
-                        content: '链接一：http://www.open-open.com/lib/view/open1403600391905.html链接二：http://www.360doc.com/content/13/0520/11/1722212_286734557.shtml链接三：https://my.oschina.net/u/1453975/blog/529521链接四：http://blog.csdn.net/u/1453975/blog/529521',
-                        publisher: 'admin',
-                        readNum: '621',
-                        comment: '89',
-                        releaseTime: '2018-05-25',
-                    },
-                ],
-                labelList:[
-                    { tag: 'java' },
-                    { tag: 'tomcat负载均衡' },
-                    { tag: 'panel' },
-                    { tag: 'jQuery' },
-                    { tag: 'jQuery选择器' },
-                    { tag: 'linux' },
-                    { tag: 'Nginx' },
-                    { tag: 'linux文件类型' },
-                    { tag: 'chrome' },
-                    { tag: 'Redis' },
-                    { tag: 'spring' },
-                    { tag: 'tomcat' },
-                    { tag: 'SyntaxHighlighter' }
-                ],
-                hotRecommendedList: [
-                    { title: '排序算法之冒泡排序 － java实现' },
-                    { title: '快速搭建基于二进制日志文件的 mysql 复制' },
-                    { title: 'web 服务器负载均衡教程，快速搭建高可用服务器集群' },
-                    { title: '使用 redis 和 spring-session 实现 tomcat、glassfish 等 web 服务器集群 session 共享' },
-                    { title: '使用 Nginx 实现 tomcat、glassfish 等 web 服务器负载均衡' },
-                    { title: 'mysql 复制（replication）基础概念和应用场景简介' },
-                    { title: 'redis 单节点在 Linux 生产环境的安装和简单配置' },
-                    { title: '使用 jQuery 的 val() 方法来获取以及设置表单元素值' },
-                    { title: '使用 jQuery 的 removeProp() 方法来删除元素的特性（property）' },
-                    { title: '使用 jQuery 的 prop() 方法来获取以及设置元素的特性（property）' }
-                ],
+                latestReleaseList:[],
+                labelList:[],
+                hotRecommendedList: [],
                 linkList: [
                     { title: '百度' },
                     { title: '开源中国' },
@@ -238,6 +160,39 @@
                 return this.$refs.mySwiper.swiper
             }
         },
+        created() {
+            this.getLatestRelease();
+            this.getHotLabel();
+            this.getHotRecommended();
+        },
+        methods: {
+            //请求最新发布的数据
+            getLatestRelease(){
+                var sql = 'SELECT * FROM article ORDER BY publishTime desc LIMIT 6 ';
+                var url = '/php/select.php?sql='+sql;
+                ajaxUtil.ajaxJson(url,null,"GET",((data)=>{
+                    this.latestReleaseList = data;
+                }),null)
+            },
+
+            //请求热门标签
+            getHotLabel(){
+                var sql = 'SELECT * FROM hot_label';
+                var url = '/php/select.php?sql='+sql;
+                ajaxUtil.ajaxJson(url,null,"GET",((data)=>{
+                    this.labelList = data;
+                }),null)
+            },
+
+            //请求热门文章数据
+            getHotRecommended(){
+                var sql = 'SELECT * FROM article ORDER BY readNum desc LIMIT 8';
+                var url = '/php/select.php?sql='+sql;
+                ajaxUtil.ajaxJson(url,null,"GET",((data)=>{
+                    this.hotRecommendedList = data;
+                }),null)
+            },
+        },
     }
 </script>
 
@@ -251,6 +206,10 @@
             width: 74%
             text-align: left
             .bannerBox
+                .swiper-button-prev
+                    background-image: url("../../../assets/images/prev.png")
+                .swiper-button-next
+                    background-image: url("../../../assets/images/next.png")
                 img
                     width: 100%
                     height: 350px
@@ -363,7 +322,7 @@
             width: 23%
             min-height: 1px
             text-align: left
-            padding-right: 15px
+            padding-right: 1px
             &> div
                 width: 100%
                 height: auto
